@@ -10,6 +10,8 @@ public class Cliente {
     private String nome;
     private String email;
     private String Telefone;
+    private ListaDeObjetos<Pedido> listaPedidos = new ListaDeObjetos<>(10);
+    private ListaDeObjetos<Fatura> listaFaturas = new ListaDeObjetos<>(10);
 
     public Cliente(String cpf, String nome, String email, String telefone) {
         this.cpf = cpf;
@@ -18,6 +20,13 @@ public class Cliente {
         Telefone = telefone;
     }
 
+    public ListaDeObjetos<Fatura> getListaFaturas() {
+        return listaFaturas;
+    }
+
+    public void setListaFaturas(ListaDeObjetos<Fatura> listaFaturas) {
+        this.listaFaturas = listaFaturas;
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -61,5 +70,10 @@ public class Cliente {
 
     public String getTelefone() {
         return Telefone;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return ((Cliente)o).getCpf().equals(this.cpf);
     }
 }

@@ -73,4 +73,10 @@ public class Livro {
     public void setPreco(double preco) {
         this.preco = preco;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        String objIsbn = ((Livro)obj).getIsbn();
+        return objIsbn.equals(this.getIsbn());
+    }
 }

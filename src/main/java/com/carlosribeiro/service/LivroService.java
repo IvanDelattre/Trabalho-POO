@@ -1,11 +1,15 @@
 package com.carlosribeiro.service;
 
 import com.carlosribeiro.dao.LivroDAO;
+import com.carlosribeiro.exception.EmUsoException;
 import com.carlosribeiro.exception.EntidadeNaoEncontradaException;
-import com.carlosribeiro.model.Livro;
+import com.carlosribeiro.model.*;
 import com.carlosribeiro.util.FabricaDeDaos;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LivroService{
 
@@ -16,7 +20,7 @@ public class LivroService{
         return livroDAO.incluir(livro) ;
     }
 
-    public  Livro alterarIsbn(Livro livro , String isbn){
+    /*public  Livro alterarIsbn(Livro livro , String isbn){
        livro.setIsbn(isbn);
         return livro ;
     }
@@ -34,15 +38,38 @@ public class LivroService{
     public Livro alterarPreco(Livro livro , double preco){
         livro.setPreco(preco);
         return livro ;
+    }*/
+
+    public Livro alterar(Livro livro){
+        return livroDAO.alterar(livro) ;
     }
 
-    public Livro remover(int id ){
-        Livro livro = livroDAO.remover(id) ;
-        if( livro == null){
-            throw new EntidadeNaoEncontradaException("Livro insexistente");
+    public Livro remover(int id ) throws EmUsoException {
+
+        Livro livro = livroDAO.recuperarPorId(id);
+        if(livro != null){
+            ClienteDAO dao = FabricaDeDaos.getDAO(ClienteDAO.class);
+            Map mapc = dao.getMap();
+            for(int i = 1; i<=mapc.size(); i++){
+                Cliente cliente = (Cliente) mapc.get(i);
+                for(Pedido pedido: cliente.getListaPedidos()){
+                    for(ItemPedido item:pedido.getListaItemPedido()){
+                        if(item.getLivro().getId() == id){
+                            throw new EmUsoException("O livro está em uso pelo pedido nº "+ pedido.getNumPedido() );
+                        }
+                    }
+                }
+                for(Fatura fatura: cliente.getListaFaturas()){
+                    for(ItemFaturado item:fatura.getItensFaturados()) {
+                        if(item.getLivro().getId() == id){
+                            throw new EmUsoException("O livro está em uso pela fatura nº "+ fatura.getNumFatura() );
+                        }
+                    }
+                }
+            }
+            return livroDAO.remover(id);
         }
-        livroDAO.recuperarPorId(id);
-        return livro ;
+        throw new EntidadeNaoEncontradaException("Livro inexistente");
     }
 
     public List<Livro> recuperarTodos(){

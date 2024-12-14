@@ -1,5 +1,6 @@
 package com.carlosribeiro;
 
+import com.carlosribeiro.exception.EmUsoException;
 import com.carlosribeiro.exception.EntidadeNaoEncontradaException;
 import com.carlosribeiro.model.Livro;
 import com.carlosribeiro.service.LivroService;
@@ -68,27 +69,28 @@ public class PrincipalLivro {
                     switch (opcaoAlteracao){
                         case 1 ->{
                             isbn = Console.readLine("Digite novo Isbn: ") ;
-                            livroService.alterarIsbn(livro , isbn ) ;
+                            livro.setIsbn(isbn);
                             System.out.println("Isbn Alterado com sucesso!! \n");
                         }
                         case 2 ->{
                             titulo = Console.readLine("Digite Novo Titulo: ");
-                            livroService.alterarTitulo(livro , titulo) ;
+                            livro.setTitulo(titulo);
                             System.out.println("\nTitulo alterado com suceeso!! \n");
                         }
                         case 3 ->{
                             descricao = Console.readLine("Digite Nova Descrição: ");
-                            livroService.alterarDescricao(livro , descricao) ;
+                            livro.setDescricao(descricao);
                             System.out.println("\n Descrição Alterada com suceeso!! \n" );
                         }
                         case 4 ->{
                             preco = Console.readDouble("Digite novo preço" ) ;
-                            livroService.alterarPreco(livro , preco) ;
+                            livro.setPreco(preco);
                             System.out.println("\n Preço Alterado Com suceeso!! \n");
 
                         }
                         default -> System.out.println('\n' + "Opção inválida!");
                     }
+                    livroService.alterar(livro);
 
                 }
                 case 3 ->{
@@ -98,6 +100,8 @@ public class PrincipalLivro {
                         System.out.println("\nLivro Removido com sucesso!!\n");
                     }catch (EntidadeNaoEncontradaException e ){
                         System.out.println('\n' + e.getMessage() );
+                    }catch(EmUsoException e1){
+                        System.out.println("\n"+e1.getMessage());
                     }
                 }
 

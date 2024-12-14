@@ -53,7 +53,7 @@ public class DAOGenericoImpl<V> implements DAOGenerico<V> {
         Field campo = recuperarCampoIdentificador(obj);
         try {
             campo.setAccessible(true);
-            campo.set(obj, ++contador);
+            campo.set(obj, contador);
             return map.put(contador, obj);
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);

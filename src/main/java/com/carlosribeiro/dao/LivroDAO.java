@@ -6,7 +6,9 @@ import java.util.List;
 
 public interface LivroDAO extends DAOGenerico<Livro> {
 
+
     List<Livro> recuperarTodosOsLivrosOrdenados(int id);
+
 
 
 }
