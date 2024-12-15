@@ -13,8 +13,9 @@ public class ItemFaturado {
         this.livro = livro;
     }
 
-    public ItemFaturado(int qtdFaturada ){
+    public ItemFaturado(int qtdFaturada, Livro livro ){
         this.qtdFaturada = qtdFaturada ;
+        this.livro = livro;
     }
 
     public int getQtdFaturada() {

@@ -1,25 +1,38 @@
 package com.carlosribeiro.model;
 
+import com.carlosribeiro.util.Id;
+
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Fatura {
 
     //todo colocar relaçõpes no código
+    @Id
     private int numFatura;
-    private Date dataEmissao;
-    private Date dataCancelamento;
+    private LocalDate dataEmissao;
+    private LocalDate dataCancelamento;
     private ListaDeObjetos<ItemFaturado> itensFaturados;
     private double valorTotal;
     private double valorTotalDesconto;
+    private Pedido pedido;
 
-    public Fatura( Date dataEmissao, Date dataCancelamento, ListaDeObjetos<ItemFaturado> itens) {
+    public Fatura( LocalDate dataEmissao, ListaDeObjetos<ItemFaturado> itens, Pedido pedido) {
         this.dataEmissao = dataEmissao;
-        this.dataCancelamento = dataCancelamento;
         this.itensFaturados = itens;
         valorTotal = 0;
+        this.pedido = pedido;
         for(ItemFaturado item:itensFaturados){
             valorTotal+=item.getLivro().getPreco();
         }
+    }
+
+    public Pedido getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 
     public int getNumFatura() {
