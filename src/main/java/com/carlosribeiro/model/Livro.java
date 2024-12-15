@@ -10,13 +10,15 @@ public class Livro {
     private String titulo;
     private  String descricao;
     private double preco ;
+    private int qtdEstoque;
 
 
-    public Livro(String isbn , String titulo , String descricao , double preco){
+    public Livro(String isbn , String titulo , String descricao , double preco , int qtdEstoque){
         this.isbn = isbn;
         this.titulo = titulo;
         this.descricao = descricao;
         this.preco = preco;
+        this.qtdEstoque = qtdEstoque;
     }
 
 
@@ -50,8 +52,13 @@ public class Livro {
         return preco;
     }
 
+    public int getQtdEstoque(){
+        return qtdEstoque;
+    }
 
-
+    public void setQtdEstoque(int qtdEstoque){
+        this.qtdEstoque = qtdEstoque;
+    }
 
 
     public void setId(int id) {

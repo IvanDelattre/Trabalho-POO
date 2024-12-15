@@ -6,6 +6,7 @@ import com.carlosribeiro.util.Id;
 import java.time.LocalDate;
 
 public class Pedido {
+    @Id
     private int numPedido;
     private LocalDate dataEmissao;
     private LocalDate dataCancelamento = null;
@@ -56,6 +57,20 @@ public class Pedido {
         return this.numPedido ;
     }
 
+    public String getStatus() {
+        return status;
+    }
 
+    public ListaDeObjetos<ItemPedido> getListaItemPedido() {
+        return listaItemPedido;
+    }
 
+    public void setDataCancelamento(LocalDate dataCancelamento) {
+        this.dataCancelamento = dataCancelamento;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return ((Pedido) o).getNumPedido() == this.numPedido;
+    }
 }

@@ -41,7 +41,7 @@ public class PrincipalLivro {
                     descricao = Console.readLine("Informe a descrição do Livro: " );
                     preco = Console.readDouble("Infome preçõ do Livro: ") ;
 
-                    livro = new Livro(isbn , titulo , descricao , preco) ;
+                    livro = new Livro(isbn , titulo , descricao , preco , 2) ;
 
 
                     livroService.incluir(livro);

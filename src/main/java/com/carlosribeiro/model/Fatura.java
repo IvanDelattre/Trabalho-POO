@@ -43,19 +43,19 @@ public class Fatura {
         this.numFatura = numFatura;
     }
 
-    public Date getDataEmissao() {
+    public LocalDate getDataEmissao() {
         return dataEmissao;
     }
 
-    public void setDataEmissao(Date dataEmissao) {
+    public void setDataEmissao(LocalDate dataEmissao) {
         this.dataEmissao = dataEmissao;
     }
 
-    public Date getDataCancelamento() {
+    public LocalDate getDataCancelamento() {
         return dataCancelamento;
     }
 
-    public void setDataCancelamento(Date dataCancelamento) {
+    public void setDataCancelamento(LocalDate dataCancelamento) {
         this.dataCancelamento = dataCancelamento;
     }
 

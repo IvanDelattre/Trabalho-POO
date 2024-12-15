@@ -48,9 +48,13 @@ public class Cliente {
         Telefone = telefone;
     }
 
+    public void setListaPedidos(ListaDeObjetos<Pedido> listaPedidos) {
+        this.listaPedidos = listaPedidos;
+    }
 
-
-
+    public ListaDeObjetos<Pedido> getListaPedidos() {
+        return listaPedidos;
+    }
 
     public int getId() {
         return id;

@@ -1,5 +1,6 @@
 package com.carlosribeiro.service;
 
+import com.carlosribeiro.dao.ClienteDAO;
 import com.carlosribeiro.dao.LivroDAO;
 import com.carlosribeiro.exception.EmUsoException;
 import com.carlosribeiro.exception.EntidadeNaoEncontradaException;
@@ -78,7 +79,7 @@ public class LivroService{
     }
 
     public Livro recuperarPorId(int id){
-        Livro livro = livroDAO.recuperarPorId(id) ;
+        Livro livro = livroDAO.recuperarPorId(id);
         if( livro == null){
             throw new EntidadeNaoEncontradaException( "Livro inexistente" ) ;
         }
